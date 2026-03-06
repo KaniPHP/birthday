@@ -1,0 +1,515 @@
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Happy Birthday Ranjith Kumar 🎂</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Segoe UI;
+            background: linear-gradient(135deg, #fff9c4, #ffd54f, #ffc107);
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* DESKTOP CHECK */
+
+        #mobileMsg {
+            display: none;
+            padding: 50px;
+            font-size: 22px;
+        }
+
+        /* MATRIX */
+
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: -1;
+        }
+
+        /* CARD */
+
+        .card {
+            background: white;
+            margin: 40px auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 450px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* CAKE */
+
+        .cake img {
+            width: 220px;
+            animation: rotateCake 6s linear infinite;
+        }
+
+        @keyframes rotateCake {
+            0% {
+                transform: rotateY(0)
+            }
+
+            100% {
+                transform: rotateY(360deg)
+            }
+        }
+
+        /* BUTTON */
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            background: #ff9800;
+            color: white;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        /* GALLERY */
+
+        .gallery {
+            width: 220px;
+            height: 220px;
+            margin: 20px auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: 1s;
+        }
+
+        .gallery img.active {
+            opacity: 1;
+        }
+
+        /* BALLOONS */
+
+        .balloon {
+            position: fixed;
+            bottom: -80px;
+            font-size: 35px;
+            animation: floatBalloon linear infinite;
+        }
+
+        @keyframes floatBalloon {
+            0% {
+                transform: translateY(0)
+            }
+
+            100% {
+                transform: translateY(-120vh)
+            }
+        }
+
+        /* HEARTS */
+
+        .heart {
+            position: fixed;
+            bottom: -60px;
+            font-size: 25px;
+            animation: floatHeart linear infinite;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0)
+            }
+
+            100% {
+                transform: translateY(-110vh)
+            }
+        }
+
+        /* CONFETTI */
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh)
+            }
+
+            100% {
+                transform: translateY(110vh)
+            }
+        }
+
+        /* FIREWORK */
+
+        .spark {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: yellow;
+            border-radius: 50%;
+            animation: explode 1s forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                opacity: 1
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(var(--x), var(--y))
+            }
+        }
+
+        /* GIFT */
+
+        .gift {
+            font-size: 70px;
+            cursor: pointer;
+        }
+
+        /* TERMINAL */
+
+        .terminal {
+            background: #111;
+            color: #00ff90;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-family: monospace;
+            text-align: left;
+        }
+
+        /* GITHUB GRAPH */
+
+        .graph {
+            display: grid;
+            grid-template-columns: repeat(20, 12px);
+            gap: 3px;
+            margin: 20px auto;
+            width: max-content;
+        }
+
+        .graph div {
+            width: 12px;
+            height: 12px;
+            background: #eee;
+        }
+
+        .l1 {
+            background: #9be9a8
+        }
+
+        .l2 {
+            background: #40c463
+        }
+
+        .l3 {
+            background: #30a14e
+        }
+
+        .l4 {
+            background: #216e39
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="mobileMsg">
+        📱 This developer birthday page works best on Desktop 😎
+    </div>
+
+    <div id="mainPage">
+
+        <canvas id="matrix"></canvas>
+
+        <div class="card">
+
+            <h1>🎂 Happy Birthday</h1>
+            <h2>Ranjith Kumar</h2>
+
+            <div class="cake">
+                <img src="https://i.pinimg.com/originals/97/a9/84/97a984261e943fd499b317eae56e2b6e.gif">
+            </div>
+
+            <br>
+
+            <button onclick="cutCake()">Cut the Cake 🎉</button>
+
+            <br><br>
+
+            <div class="gift" onclick="openGift()">🎁</div>
+
+            <h3>Memories</h3>
+
+
+            <div class="gallery">
+                <img src="images/r1.jpeg" class="active">
+                <img src="images/r2.jpeg">
+                <img src="images/r3.jpeg">
+                <img src="images/r4.jpeg">
+                <img src="images/r5.jpeg">
+            </div>
+
+            <h3>Developer Contributions</h3>
+            <div class="graph" id="graph"></div>
+
+            <div class="terminal">
+                <pre id="terminal"></pre>
+            </div>
+
+        </div>
+    </div>
+
+    <audio autoplay loop>
+        <source src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mid">
+    </audio>
+
+    <script>
+
+        /* DESKTOP ONLY */
+
+        function checkScreen() {
+
+            if (window.innerWidth < 900) {
+
+                document.getElementById("mobileMsg").style.display = "block";
+                document.getElementById("mainPage").style.display = "none";
+
+            } else {
+
+                document.getElementById("mobileMsg").style.display = "none";
+                document.getElementById("mainPage").style.display = "block";
+
+            }
+
+        }
+
+        checkScreen();
+        window.addEventListener("resize", checkScreen);
+
+        /* MATRIX RAIN */
+
+        const canvas = document.getElementById("matrix");
+        const ctx = canvas.getContext("2d");
+
+        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+
+        const letters = "DEVHAPPYBIRTHDAYRANJITH01".split("");
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for (let x = 0; x < columns; x++)drops[x] = 1;
+
+        function draw() {
+
+            ctx.fillStyle = "rgba(0,0,0,0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#0f0";
+            ctx.font = fontSize + "px monospace";
+
+            for (let i = 0; i < drops.length; i++) {
+
+                let text = letters[Math.floor(Math.random() * letters.length)];
+
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+                    drops[i] = 0;
+
+                drops[i]++;
+
+            }
+
+        }
+
+        setInterval(draw, 35);
+
+        /* BALLOONS */
+
+        for (let i = 0; i < 10; i++) {
+            let b = document.createElement("div");
+            b.className = "balloon";
+            b.innerHTML = "🎈";
+            b.style.left = Math.random() * 100 + "%";
+            b.style.animationDuration = (Math.random() * 5 + 5) + "s";
+            document.body.appendChild(b);
+        }
+
+        /* HEARTS */
+
+        for (let i = 0; i < 8; i++) {
+            let h = document.createElement("div");
+            h.className = "heart";
+            h.innerHTML = "💖";
+            h.style.left = Math.random() * 100 + "%";
+            h.style.animationDuration = (Math.random() * 5 + 5) + "s";
+            document.body.appendChild(h);
+        }
+
+        /* PHOTO SLIDER */
+
+        let index = 0;
+        let slides = document.querySelectorAll(".gallery img");
+
+        setInterval(() => {
+            slides[index].classList.remove("active");
+            index = (index + 1) % slides.length;
+            slides[index].classList.add("active");
+        }, 3000);
+
+        /* CONFETTI */
+
+        function confetti() {
+
+            for (let i = 0; i < 60; i++) {
+                let c = document.createElement("div");
+                c.className = "confetti";
+                c.style.left = Math.random() * 100 + "%";
+                c.style.background = ["#ff9800", "#ffc107", "#ff5722", "#fff176"][Math.floor(Math.random() * 4)];
+                document.body.appendChild(c);
+            }
+
+        }
+
+        /* FIREWORK */
+
+        function firework() {
+
+            for (let i = 0; i < 80; i++) {
+
+                let spark = document.createElement("div");
+                spark.className = "spark";
+
+                let x = (Math.random() - 0.5) * 800 + "px";
+                let y = (Math.random() - 0.5) * 800 + "px";
+
+                spark.style.setProperty("--x", x);
+                spark.style.setProperty("--y", y);
+
+                spark.style.left = "50%";
+                spark.style.top = "50%";
+
+                document.body.appendChild(spark);
+
+            }
+
+        }
+
+        /* CUT CAKE */
+
+        function cutCake() {
+
+            confetti();
+            firework();
+
+            alert("🎉 Happy Birthday Thambi!");
+
+        }
+
+        /* GIFT */
+
+        function openGift() {
+
+            document.querySelector(".gift").innerHTML = "🎉";
+
+            alert("Surprise! Best Developer Brother Ever!");
+
+        }
+
+        /* TERMINAL */
+
+        const text = `> npm install happiness
+> npm install success
+> npm install money
+
+✔ Packages Installed
+
+console.log("Happy Birthday Ranjith Kumar 🎂")`;
+
+        let i = 0;
+
+        function type() {
+
+            if (i < text.length) {
+
+                document.getElementById("terminal").innerHTML += text.charAt(i);
+                i++;
+
+                setTimeout(type, 40);
+
+            }
+
+        }
+
+        type();
+
+        /* GITHUB GRAPH */
+
+        const graph = document.getElementById("graph");
+
+        for (let i = 0; i < 140; i++) {
+
+            let cell = document.createElement("div");
+
+            let r = Math.floor(Math.random() * 5);
+
+            if (r > 0) cell.classList.add("l" + r);
+
+            graph.appendChild(cell);
+
+        }
+
+        /* SECRET KONAMI CODE */
+
+        let keys = [];
+        const code = "38384040373937396665";
+
+        window.addEventListener("keydown", e => {
+
+            keys.push(e.keyCode);
+
+            if (keys.toString().replace(/,/g, "").includes(code)) {
+
+                alert("🚀 Developer Mode Activated!");
+                firework();
+
+            }
+
+        });
+
+        console.log("👨‍💻 Developer Console Surprise!");
+        console.log("Happy Birthday Ranjith Kumar 🎂");
+
+    </script>
+
+</body>
+
+</html>
