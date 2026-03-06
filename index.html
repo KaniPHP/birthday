@@ -1,9 +1,9 @@
-```html
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Happy Birthday Ranjith Kumar 🎂</title>
 
     <style>
@@ -13,14 +13,6 @@
             background: linear-gradient(135deg, #fff9c4, #ffd54f, #ffc107);
             text-align: center;
             overflow-x: hidden;
-        }
-
-        /* DESKTOP CHECK */
-
-        #mobileMsg {
-            display: none;
-            padding: 50px;
-            font-size: 22px;
         }
 
         /* MATRIX */
@@ -44,7 +36,7 @@
             width: 90%;
             max-width: 450px;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
         }
 
         /* CAKE */
@@ -83,9 +75,6 @@
             height: 220px;
             margin: 20px auto;
             position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         .gallery img {
@@ -102,6 +91,15 @@
 
         .gallery img.active {
             opacity: 1;
+        }
+
+        /* VIDEO */
+
+        video {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 10px;
+            margin-top: 15px;
         }
 
         /* BALLOONS */
@@ -201,90 +199,97 @@
             margin-top: 20px;
             font-family: monospace;
             text-align: left;
+            font-size: 14px;
+            overflow-x: auto;
         }
 
-        /* GITHUB GRAPH */
+        /* MOBILE RESPONSIVE */
 
-        .graph {
-            display: grid;
-            grid-template-columns: repeat(20, 12px);
-            gap: 3px;
-            margin: 20px auto;
-            width: max-content;
-        }
+        @media(max-width:768px) {
 
-        .graph div {
-            width: 12px;
-            height: 12px;
-            background: #eee;
-        }
+            .card {
+                width: 95%;
+                padding: 20px;
+                margin: 20px auto;
+            }
 
-        .l1 {
-            background: #9be9a8
-        }
+            h1 {
+                font-size: 28px
+            }
 
-        .l2 {
-            background: #40c463
-        }
+            h2 {
+                font-size: 20px
+            }
 
-        .l3 {
-            background: #30a14e
-        }
+            .cake img {
+                width: 160px;
+            }
 
-        .l4 {
-            background: #216e39
+            .gallery {
+                width: 180px;
+                height: 180px;
+            }
+
+            .balloon {
+                font-size: 25px;
+            }
+
+            .heart {
+                font-size: 20px;
+            }
+
+            .gift {
+                font-size: 50px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 10px 18px;
+            }
+
         }
     </style>
 </head>
 
 <body>
 
-    <div id="mobileMsg">
-        📱 This developer birthday page works best on Desktop 😎
-    </div>
+    <canvas id="matrix"></canvas>
 
-    <div id="mainPage">
+    <div class="card">
 
-        <canvas id="matrix"></canvas>
+        <h1>🎂 Happy Birthday</h1>
+        <h2>Ranjith Kumar</h2>
 
-        <div class="card">
-
-            <h1>🎂 Happy Birthday</h1>
-            <h2>Ranjith Kumar</h2>
-
-            <div class="cake">
-                <img src="https://i.pinimg.com/originals/97/a9/84/97a984261e943fd499b317eae56e2b6e.gif">
-            </div>
-
-            <br>
-
-            <button onclick="cutCake()">Cut the Cake 🎉</button>
-
-            <br><br>
-
-            <div class="gift" onclick="openGift()">🎁</div>
-
-            <h3>Memories</h3>
-
-
-            <div class="gallery">
-                <img src="images/r1.jpeg" class="active">
-                <img src="images/r2.jpeg">
-                <img src="images/r3.jpeg">
-                <img src="images/r4.jpeg">
-                <img src="images/r5.jpeg">
-            </div>
-
-
-            <video controls style="width: 50%;">
-                <source src="images/video.mov" type="video/mp4">
-            </video>
-
-            <div class="terminal">
-                <pre id="terminal"></pre>
-            </div>
-
+        <div class="cake">
+            <img src="https://i.pinimg.com/originals/97/a9/84/97a984261e943fd499b317eae56e2b6e.gif">
         </div>
+
+        <br>
+
+        <button onclick="cutCake()">Cut the Cake 🎉</button>
+
+        <br><br>
+
+        <div class="gift" onclick="openGift()">🎁</div>
+
+        <h3>Memories</h3>
+
+        <div class="gallery">
+            <img src="images/r1.jpeg" class="active">
+            <img src="images/r2.jpeg">
+            <img src="images/r3.jpeg">
+            <img src="images/r4.jpeg">
+            <img src="images/r5.jpeg">
+        </div>
+
+        <video controls>
+            <source src="images/video.mov" type="video/mp4">
+        </video>
+
+        <div class="terminal">
+            <pre id="terminal"></pre>
+        </div>
+
     </div>
 
     <audio autoplay loop>
@@ -293,34 +298,18 @@
 
     <script>
 
-        /* DESKTOP ONLY */
-
-        function checkScreen() {
-
-            if (window.innerWidth < 900) {
-
-                document.getElementById("mobileMsg").style.display = "block";
-                document.getElementById("mainPage").style.display = "none";
-
-            } else {
-
-                document.getElementById("mobileMsg").style.display = "none";
-                document.getElementById("mainPage").style.display = "block";
-
-            }
-
-        }
-
-        checkScreen();
-        window.addEventListener("resize", checkScreen);
-
-        /* MATRIX RAIN */
+        /* MATRIX */
 
         const canvas = document.getElementById("matrix");
         const ctx = canvas.getContext("2d");
 
-        canvas.height = window.innerHeight;
-        canvas.width = window.innerWidth;
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
 
         const letters = "DEVHAPPYBIRTHDAYRANJITH01".split("");
         const fontSize = 16;
@@ -357,23 +346,27 @@
         /* BALLOONS */
 
         for (let i = 0; i < 10; i++) {
+
             let b = document.createElement("div");
             b.className = "balloon";
             b.innerHTML = "🎈";
             b.style.left = Math.random() * 100 + "%";
-            b.style.animationDuration = (Math.random() * 5 + 5) + "s";
+            b.style.animationDuration = (Math.random() * 5 + 6) + "s";
             document.body.appendChild(b);
+
         }
 
         /* HEARTS */
 
         for (let i = 0; i < 8; i++) {
+
             let h = document.createElement("div");
             h.className = "heart";
             h.innerHTML = "💖";
             h.style.left = Math.random() * 100 + "%";
             h.style.animationDuration = (Math.random() * 5 + 5) + "s";
             document.body.appendChild(h);
+
         }
 
         /* PHOTO SLIDER */
@@ -382,9 +375,11 @@
         let slides = document.querySelectorAll(".gallery img");
 
         setInterval(() => {
+
             slides[index].classList.remove("active");
             index = (index + 1) % slides.length;
             slides[index].classList.add("active");
+
         }, 3000);
 
         /* CONFETTI */
@@ -392,11 +387,14 @@
         function confetti() {
 
             for (let i = 0; i < 60; i++) {
+
                 let c = document.createElement("div");
                 c.className = "confetti";
                 c.style.left = Math.random() * 100 + "%";
                 c.style.background = ["#ff9800", "#ffc107", "#ff5722", "#fff176"][Math.floor(Math.random() * 4)];
+
                 document.body.appendChild(c);
+
             }
 
         }
@@ -472,22 +470,6 @@ console.log("Happy Birthday Ranjith Kumar 🎂")`;
         }
 
         type();
-
-        /* GITHUB GRAPH */
-
-        const graph = document.getElementById("graph");
-
-        for (let i = 0; i < 140; i++) {
-
-            let cell = document.createElement("div");
-
-            let r = Math.floor(Math.random() * 5);
-
-            if (r > 0) cell.classList.add("l" + r);
-
-            graph.appendChild(cell);
-
-        }
 
         /* SECRET KONAMI CODE */
 
